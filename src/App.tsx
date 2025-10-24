@@ -173,7 +173,7 @@ function App() {
   return (
     <ErrorBoundary>
       <AuthProvider>
-        <Router>
+        <Router basename="/tiketareact">
           <AppContent />
         </Router>
       </AuthProvider>
