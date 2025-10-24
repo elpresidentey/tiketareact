@@ -34,7 +34,8 @@ describe('ticketStore', () => {
         title: 'Test Ticket',
         description: 'Test description',
         status: 'open' as const,
-        priority: 'medium' as const
+        priority: 'medium' as const,
+        tags: ['test']
       }
       
       const result = await store.createTicket(ticketData)
@@ -51,7 +52,8 @@ describe('ticketStore', () => {
         title: 'Test Ticket',
         description: 'Test description',
         status: 'open',
-        priority: 'medium'
+        priority: 'medium',
+        tags: ['test']
       })
       
       expect(useTicketStore.getState().isLoading).toBe(true)
@@ -73,7 +75,8 @@ describe('ticketStore', () => {
         priority: 'medium' as const,
         createdAt: new Date(),
         updatedAt: new Date(),
-        userId: '1'
+        userId: '1',
+        tags: ['test']
       }
       
       useTicketStore.setState({ tickets: [initialTicket] })
@@ -103,7 +106,8 @@ describe('ticketStore', () => {
         priority: 'medium' as const,
         createdAt: new Date(),
         updatedAt: new Date(),
-        userId: '1'
+        userId: '1',
+        tags: ['test']
       }
       
       useTicketStore.setState({ tickets: [initialTicket] })
