@@ -97,7 +97,7 @@ export const useIntersectionAnimation = (options: IntersectionObserverInit = {})
     return () => {
       observer.disconnect()
     }
-  }, [])
+  }, [options])
 
   return {
     ref: elementRef,

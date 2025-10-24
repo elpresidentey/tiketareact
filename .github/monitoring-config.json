@@ -1,0 +1,37 @@
+{
+  "url": "https://username.github.io/tiketareact/",
+  "checkInterval": 300000,
+  "timeout": 10000,
+  "retries": 3,
+  "alertThreshold": 3,
+  "checks": {
+    "availability": true,
+    "performance": true,
+    "assets": true,
+    "routing": true
+  },
+  "thresholds": {
+    "responseTime": {
+      "warning": 5000,
+      "critical": 10000
+    },
+    "assetFailureRate": {
+      "warning": 10,
+      "critical": 25
+    },
+    "routeFailureRate": {
+      "warning": 10,
+      "critical": 25
+    }
+  },
+  "notifications": {
+    "enabled": true,
+    "channels": ["github-issues"],
+    "quietHours": {
+      "enabled": false,
+      "start": "22:00",
+      "end": "08:00",
+      "timezone": "UTC"
+    }
+  }
+}

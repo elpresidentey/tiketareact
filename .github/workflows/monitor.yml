@@ -1,0 +1,162 @@
+name: Monitor Deployment
+
+on:
+  schedule:
+    # Run every 30 minutes
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to monitor (optional)'
+        required: false
+        type: string
+
+jobs:
+  monitor:
+    name: Health Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Run health check
+      id: health-check
+      run: |
+        URL="${{ github.event.inputs.url || 'https://username.github.io/tiketareact/' }}"
+        echo "Monitoring URL: $URL"
+        
+        # Run the monitoring script
+        if node scripts/monitor-deployment.cjs "$URL"; then
+          echo "status=healthy" >> $GITHUB_OUTPUT
+          echo "Health check passed"
+        else
+          echo "status=unhealthy" >> $GITHUB_OUTPUT
+          echo "Health check failed"
+        fi
+        
+    - name: Create issue on failure
+      if: steps.health-check.outputs.status == 'unhealthy'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const title = `🚨 Deployment Health Check Failed - ${new Date().toISOString().split('T')[0]}`;
+          const body = `## Health Check Failure Report
+          
+          **Monitoring URL**: ${{ github.event.inputs.url || 'https://username.github.io/tiketareact/' }}
+          **Check Time**: ${new Date().toISOString()}
+          **Workflow**: ${{ github.workflow }}
+          **Run ID**: ${{ github.run_id }}
+          
+          ### Issue Details
+          The automated health check detected issues with the deployed application.
+          
+          ### Recommended Actions
+          - [ ] Check the [monitoring workflow logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details
+          - [ ] Verify the site is accessible manually
+          - [ ] Check for any recent deployments that might have caused issues
+          - [ ] Run local health check: \`npm run health-check [URL]\`
+          
+          ### Troubleshooting
+          1. **Manual Check**: Visit the site directly to confirm the issue
+          2. **Asset Loading**: Check browser developer tools for asset loading errors
+          3. **Performance**: Test site performance and response times
+          4. **Recent Changes**: Review recent commits for potential causes
+          
+          This issue was automatically created by the monitoring workflow.
+          If the issue resolves itself, this can be closed.
+          `;
+          
+          // Check if there's already an open monitoring issue
+          const existingIssues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: 'monitoring,automated',
+            state: 'open'
+          });
+          
+          if (existingIssues.data.length === 0) {
+            // Create new issue only if none exists
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['monitoring', 'bug', 'automated']
+            });
+          } else {
+            // Update existing issue with new information
+            const issue = existingIssues.data[0];
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: `🔄 **Health Check Update**
+              
+              Another health check failure detected at ${new Date().toISOString()}.
+              
+              **Monitoring URL**: ${{ github.event.inputs.url || 'https://username.github.io/tiketareact/' }}
+              **Workflow Run**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+              
+              Please investigate if this is an ongoing issue.`
+            });
+          }
+          
+    - name: Close resolved issues
+      if: steps.health-check.outputs.status == 'healthy'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          // Find open monitoring issues and close them
+          const openIssues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: 'monitoring,automated',
+            state: 'open'
+          });
+          
+          for (const issue of openIssues.data) {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: `✅ **Issue Resolved**
+              
+              The health check is now passing. The deployment appears to be healthy.
+              
+              **Check Time**: ${new Date().toISOString()}
+              **Status**: All checks passed
+              
+              Automatically closing this monitoring issue.`
+            });
+            
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              state: 'closed'
+            });
+          }
+          
+    - name: Update monitoring summary
+      if: always()
+      run: |
+        echo "## 📊 Monitoring Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- **Status**: ${{ steps.health-check.outputs.status }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **URL**: ${{ github.event.inputs.url || 'https://username.github.io/tiketareact/' }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Check Time**: $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ steps.health-check.outputs.status }}" = "healthy" ]; then
+          echo "### ✅ All Systems Operational" >> $GITHUB_STEP_SUMMARY
+          echo "The deployment is healthy and all checks passed." >> $GITHUB_STEP_SUMMARY
+        else
+          echo "### ⚠️ Issues Detected" >> $GITHUB_STEP_SUMMARY
+          echo "The health check detected issues. An issue has been created for investigation." >> $GITHUB_STEP_SUMMARY
+        fi

@@ -95,7 +95,7 @@ describe('LoginForm', () => {
   })
 
   it('shows loading state during submission', async () => {
-    const user = userEvent.setup()
+    const _user = userEvent.setup()
     vi.mocked(useAuthStore).mockReturnValue({
       ...mockAuthStore,
       isLoading: true

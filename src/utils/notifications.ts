@@ -70,7 +70,7 @@ export class NotificationService {
   // Show error notification with enhanced error handling
   error(error: string | Error | TicketAppError, config?: NotificationConfig): string {
     let message: string
-    let options = { ...defaultConfigs.error, ...config }
+    const options = { ...defaultConfigs.error, ...config }
 
     if (error instanceof TicketAppError) {
       message = error.message

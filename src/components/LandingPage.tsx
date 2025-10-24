@@ -38,7 +38,7 @@ const LandingPage = () => {
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/hero-image.jpg)',
+            backgroundImage: 'url(./hero-image.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             filter: 'brightness(0.6) contrast(1.2) saturate(1.1)'

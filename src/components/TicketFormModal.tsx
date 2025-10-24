@@ -28,13 +28,8 @@ const TicketFormModal: React.FC<TicketFormModalProps> = ({
   }
 
   const handleSubmit = async (data: CreateTicketData) => {
-    try {
-      await onSubmit(data)
-      onClose() // Close modal on successful submission
-    } catch (error) {
-      // Error is handled by parent component
-      throw error
-    }
+    await onSubmit(data)
+    onClose() // Close modal on successful submission
   }
 
   return (

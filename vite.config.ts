@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -21,8 +20,8 @@ export default defineConfig({
     },
   },
   build: {
-    // Enable source maps for better debugging
-    sourcemap: false,
+    // Enable source maps for better debugging in production
+    sourcemap: true,
     // Optimize CSS
     cssCodeSplit: true,
     // Minify options
@@ -116,12 +115,26 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     // Enable asset inlining for small files
     assetsInlineLimit: 4096,
+    // Ensure proper asset handling for GitHub Pages
+    assetsDir: 'assets',
+    // Generate manifest for better caching
+    manifest: true,
   },
   // Optimize dev server
   server: {
     hmr: {
       overlay: false,
     },
+  },
+  // GitHub Pages specific optimizations
+  experimental: {
+    renderBuiltUrl(filename, { hostType }) {
+      if (hostType === 'js') {
+        return { js: `./assets/${filename}` }
+      } else {
+        return { relative: true }
+      }
+    }
   },
   // Enable CSS preprocessing optimizations
   css: {
@@ -140,14 +153,5 @@ export default defineConfig({
       'date-fns',
     ],
   },
-  // Test configuration
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./src/test/setup.ts'],
-    css: true,
-    typecheck: {
-      tsconfig: './tsconfig.test.json'
-    }
-  },
+
 })

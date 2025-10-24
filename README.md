@@ -416,6 +416,27 @@ Optimized build configuration in `vite.config.ts`:
 
 ## 🚀 Deployment
 
+### GitHub Pages Deployment (Current)
+
+This application is currently deployed to GitHub Pages with automated CI/CD. For detailed deployment information, see:
+
+- **[Deployment Guide](./docs/DEPLOYMENT.md)** - Complete deployment instructions
+- **[Troubleshooting Guide](./docs/TROUBLESHOOTING.md)** - Common issues and solutions
+- **[GitHub Pages Configuration](./docs/GITHUB-PAGES-CONFIG.md)** - Configuration requirements
+
+### Quick Deployment Commands
+
+```bash
+# Verify build locally
+npm run build:verify
+
+# Check deployment health
+npm run health-check https://elpresidentey.github.io/tiketareact/
+
+# Monitor deployment status
+npm run monitor
+```
+
 ### Build for Production
 ```bash
 # Create production build
@@ -423,14 +444,24 @@ npm run build
 
 # Preview production build locally
 npm run preview
+
+# Verify build artifacts
+npm run verify-build
 ```
 
-### Deployment Options
+### Deployment Features
 
-#### Static Hosting (Recommended)
+- **Automated CI/CD**: GitHub Actions workflow
+- **Build Verification**: Automated checks for deployment readiness
+- **Health Monitoring**: Post-deployment validation
+- **Performance Optimization**: Code splitting and asset optimization
+- **Error Handling**: Comprehensive error reporting and rollback procedures
+
+### Alternative Deployment Options
+
+#### Static Hosting
 - **Vercel**: Zero-config deployment
 - **Netlify**: Continuous deployment from Git
-- **GitHub Pages**: Free hosting for public repos
 - **AWS S3 + CloudFront**: Scalable static hosting
 
 #### Docker Deployment
@@ -447,6 +478,18 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
+
+### Deployment Verification
+
+After deployment, the following checks are automatically performed:
+
+- ✅ Application loads without blank screen
+- ✅ All routes are accessible via HashRouter
+- ✅ Assets load correctly with proper base paths
+- ✅ Authentication flows work properly
+- ✅ Ticket management functionality is operational
+- ✅ Mobile responsiveness is maintained
+- ✅ Performance metrics are within acceptable ranges
 
 ## 🐛 Troubleshooting
 

@@ -56,29 +56,24 @@ const TicketManagementPage = () => {
   }
 
   const handleTicketFormSubmit = async (data: CreateTicketData) => {
-    try {
-      if (editingTicket) {
-        // Update existing ticket
-        const updatedTicket = await updateTicket(editingTicket.id, data)
-        if (updatedTicket) {
-          notifyOperation.ticketUpdated(data.title)
-        } else {
-          notifyOperation.ticketUpdateError()
-          throw new Error('Update failed')
-        }
+    if (editingTicket) {
+      // Update existing ticket
+      const updatedTicket = await updateTicket(editingTicket.id, data)
+      if (updatedTicket) {
+        notifyOperation.ticketUpdated(data.title)
       } else {
-        // Create new ticket
-        const newTicket = await createTicket(data)
-        if (newTicket) {
-          notifyOperation.ticketCreated(data.title)
-        } else {
-          notifyOperation.ticketCreateError()
-          throw new Error('Creation failed')
-        }
+        notifyOperation.ticketUpdateError()
+        throw new Error('Update failed')
       }
-    } catch (error) {
-      // Re-throw to prevent modal from closing
-      throw error
+    } else {
+      // Create new ticket
+      const newTicket = await createTicket(data)
+      if (newTicket) {
+        notifyOperation.ticketCreated(data.title)
+      } else {
+        notifyOperation.ticketCreateError()
+        throw new Error('Creation failed')
+      }
     }
   }
 

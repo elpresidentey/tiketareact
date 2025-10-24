@@ -34,8 +34,9 @@ export const useLoadingState = (initialState: Partial<LoadingState> = {}) => {
   // Clear timeout on unmount
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
+      const timeout = timeoutRef.current
+      if (timeout) {
+        clearTimeout(timeout)
       }
     }
   }, [])
@@ -221,8 +222,9 @@ export const useAsyncOperation = <T = any>(config: LoadingConfig = {}) => {
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
+      const timeout = timeoutRef.current
+      if (timeout) {
+        clearTimeout(timeout)
       }
     }
   }, [])

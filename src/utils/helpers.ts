@@ -227,13 +227,14 @@ export const calculateTicketStats = (tickets: Ticket[]) => {
       case 'in_progress':
         stats.inProgress++
         break
-      case 'closed':
+      case 'closed': {
         stats.closed++
         // Calculate resolution time for closed tickets
         const resolutionTime = ticket.updatedAt.getTime() - ticket.createdAt.getTime()
         totalResolutionTime += resolutionTime
         resolvedCount++
         break
+      }
     }
 
     // Count by priority
