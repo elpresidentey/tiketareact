@@ -95,7 +95,7 @@ describe('GitHub Pages Deployment Verification', () => {
       render(<App />)
       
       // Verify auth context is available
-      const authElements = document.querySelectorAll('[data-testid*="auth"]')
+      const _authElements = document.querySelectorAll('[data-testid*="auth"]')
       // Auth system should be initialized even if no specific elements are found
       expect(true).toBe(true) // Auth context is provided by App component
     })
@@ -126,7 +126,7 @@ describe('GitHub Pages Deployment Verification', () => {
       render(<App />)
       
       // Verify lazy loading is working (components are wrapped in Suspense)
-      const suspenseElements = document.querySelectorAll('[data-testid*="loading"]')
+      const _suspenseElements = document.querySelectorAll('[data-testid*="loading"]')
       // Code splitting is configured, loading states should be available
       expect(true).toBe(true)
     })

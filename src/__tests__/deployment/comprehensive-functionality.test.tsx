@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from '../../App'
 
@@ -67,9 +67,9 @@ describe('Comprehensive Functionality Testing', () => {
         // Wait for navigation to complete
         await waitFor(() => {
           // Should show signup form or redirect properly
-          const hasSignupContent = screen.queryByText(/create account/i) || 
-                                  screen.queryByText(/sign up/i) ||
-                                  screen.queryByText(/register/i)
+          const _hasSignupContent = screen.queryByText(/create account/i) || 
+                                   screen.queryByText(/sign up/i) ||
+                                   screen.queryByText(/register/i)
           expect(true).toBe(true) // Navigation should work without errors
         }, { timeout: 3000 })
       }
@@ -112,7 +112,7 @@ describe('Comprehensive Functionality Testing', () => {
       render(<App />)
       
       // Check for image elements or background images
-      const images = document.querySelectorAll('img, [style*="background-image"]')
+      const _images = document.querySelectorAll('img, [style*="background-image"]')
       // Images should be present or handled gracefully
       expect(true).toBe(true)
     })
@@ -151,8 +151,8 @@ describe('Comprehensive Functionality Testing', () => {
         
         await waitFor(() => {
           // Look for form elements
-          const emailInput = screen.queryByLabelText(/email/i) || screen.queryByPlaceholderText(/email/i)
-          const passwordInput = screen.queryByLabelText(/password/i) || screen.queryByPlaceholderText(/password/i)
+          const _emailInput = screen.queryByLabelText(/email/i) || screen.queryByPlaceholderText(/email/i)
+          const _passwordInput = screen.queryByLabelText(/password/i) || screen.queryByPlaceholderText(/password/i)
           
           // Form should be present or navigation should work
           expect(true).toBe(true)
@@ -170,7 +170,7 @@ describe('Comprehensive Functionality Testing', () => {
         
         await waitFor(() => {
           // Look for signup form elements
-          const formElements = screen.queryAllByRole('textbox')
+          const _formElements = screen.queryAllByRole('textbox')
           
           // Form should be present or navigation should work
           expect(true).toBe(true)
@@ -218,7 +218,7 @@ describe('Comprehensive Functionality Testing', () => {
       // Check for accessibility features
       const skipLink = screen.queryByText(/skip to main content/i)
       const mainContent = container.querySelector('main[role="main"]') || container.querySelector('main')
-      const navigation = container.querySelector('nav[role="navigation"]') || container.querySelector('nav')
+      const _navigation = container.querySelector('nav[role="navigation"]') || container.querySelector('nav')
       
       expect(skipLink).toBeTruthy()
       expect(mainContent).toBeTruthy()

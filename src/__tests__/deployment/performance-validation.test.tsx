@@ -105,8 +105,8 @@ describe('Performance and Optimization Validation', () => {
         /app-pages-[a-zA-Z0-9]+\.js$/
       ]
       
-      chunkPatterns.forEach(pattern => {
-        const sampleChunk = 'chunks/react-vendor-BxcqFAcK.js'
+      chunkPatterns.forEach(_pattern => {
+        const _sampleChunk = 'chunks/react-vendor-BxcqFAcK.js'
         // At least some chunks should match the pattern
         expect(true).toBe(true) // Code splitting is configured
       })
