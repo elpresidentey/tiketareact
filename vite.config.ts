@@ -60,7 +60,7 @@ export default defineConfig({
             // Other vendor libraries
             return 'vendor'
           }
-          
+
           // App chunks
           if (id.includes('/pages/')) {
             if (id.includes('Login') || id.includes('Signup') || id.includes('Auth')) {
@@ -70,11 +70,11 @@ export default defineConfig({
               return 'app-pages'
             }
           }
-          
+
           if (id.includes('/store/')) {
             return 'stores'
           }
-          
+
           if (id.includes('/components/')) {
             if (id.includes('Loading') || id.includes('Skeleton') || id.includes('Spinner')) {
               return 'loading-components'
@@ -86,7 +86,7 @@ export default defineConfig({
               return 'ticket-components'
             }
           }
-          
+
           if (id.includes('/hooks/') || id.includes('/utils/')) {
             return 'utils'
           }
@@ -146,5 +146,8 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     css: true,
+    typecheck: {
+      tsconfig: './tsconfig.test.json'
+    }
   },
 })

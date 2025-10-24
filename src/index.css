@@ -6,11 +6,11 @@
     --color-status-open: #10b981;
     --color-status-progress: #f59e0b;
     --color-status-closed: #6b7280;
-    
+
     /* Primary Colors */
     --color-primary: #3b82f6;
     --color-primary-dark: #1d4ed8;
-    
+
     /* Neutral Colors */
     --color-gray-50: #f9fafb;
     --color-gray-100: #f3f4f6;
@@ -29,6 +29,7 @@
 }
 
 @layer components {
+
   /* Enhanced Button Styles with Micro-interactions */
   .btn-primary {
     background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
@@ -38,7 +39,8 @@
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 2px solid transparent;
-    min-height: 44px; /* WCAG minimum touch target */
+    min-height: 44px;
+    /* WCAG minimum touch target */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -281,6 +283,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
   }
 
   .line-clamp-2 {
@@ -288,6 +291,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
   }
 
   .line-clamp-3 {
@@ -295,6 +299,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
   }
 
   /* Enhanced Micro-interactions */
@@ -380,6 +385,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -391,6 +397,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -402,6 +409,7 @@
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -413,13 +421,16 @@
     opacity: 0;
     transform: scale(0.3);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.05);
   }
+
   70% {
     transform: scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -427,9 +438,12 @@
 }
 
 @keyframes pulseSubtle {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.8;
   }
@@ -439,17 +453,32 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
 }
 
 /* Staggered animation delays for lists */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-.stagger-5 { animation-delay: 0.5s; }
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+}
 
 /* Ripple effect animation */
 @keyframes ripple {
