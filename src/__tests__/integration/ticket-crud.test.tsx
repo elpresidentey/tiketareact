@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { render } from '../../test/utils'
-import { TicketManagementPage } from '../../pages/TicketManagementPage'
+import TicketManagementPage from '../../pages/TicketManagementPage'
 import { useTickets } from '../../hooks/useTickets'
 import { useAuthStore } from '../../store/authStore'
 
@@ -26,7 +26,8 @@ const mockTickets = [
     priority: 'medium' as const,
     createdAt: new Date(),
     updatedAt: new Date(),
-    userId: '1'
+    userId: '1',
+    tags: ['test']
   },
   {
     id: '2',
@@ -36,7 +37,8 @@ const mockTickets = [
     priority: 'high' as const,
     createdAt: new Date(),
     updatedAt: new Date(),
-    userId: '1'
+    userId: '1',
+    tags: ['test', 'closed']
   }
 ]
 
@@ -47,11 +49,17 @@ const mockTicketHooks = {
   createTicket: vi.fn(),
   updateTicket: vi.fn(),
   deleteTicket: vi.fn(),
-  searchTerm: '',
-  setSearchTerm: vi.fn(),
-  statusFilter: 'all' as const,
-  setStatusFilter: vi.fn(),
-  filteredTickets: mockTickets,
+  refreshTickets: vi.fn(),
+  getTicketById: vi.fn(),
+  getTicketsByStatus: vi.fn(),
+  getTicketStats: vi.fn(() => ({
+    total: mockTickets.length,
+    open: mockTickets.filter(t => t.status === 'open').length,
+    resolved: mockTickets.filter(t => t.status === 'closed').length,
+    inProgress: mockTickets.filter(t => t.status === 'in_progress').length,
+  })),
+  clearError: vi.fn(),
+  setError: vi.fn(),
 }
 
 describe('Ticket CRUD Integration', () => {
@@ -90,7 +98,8 @@ describe('Ticket CRUD Integration', () => {
           title: 'New Test Ticket',
           description: 'New ticket description',
           status: 'open',
-          priority: 'medium'
+          priority: 'medium',
+          tags: []
         })
       })
     })
@@ -152,7 +161,8 @@ describe('Ticket CRUD Integration', () => {
           title: 'Updated Ticket Title',
           description: 'Description 1',
           status: 'open',
-          priority: 'medium'
+          priority: 'medium',
+          tags: ['test']
         })
       })
     })
