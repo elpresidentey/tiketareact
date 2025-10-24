@@ -2,6 +2,14 @@
 
 A modern, responsive ticket management application built with React 18, TypeScript, and Tailwind CSS. Features secure authentication, real-time state management, and comprehensive error handling.
 
+## 🌐 Live Demo
+
+**[View Live Application](https://elpresidentey.github.io/tiketareact/)**
+
+Try the app with demo credentials:
+- **Email**: `demo@example.com` | **Password**: `password123`
+- **Admin**: `admin@example.com` | **Password**: `admin123`
+
 ## 🚀 Features
 
 - **Authentication System**: Secure login/signup with session management
