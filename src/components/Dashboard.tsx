@@ -21,6 +21,10 @@ const Dashboard = () => {
     goToTickets()
   }
 
+  const handleNavigateToReports = () => {
+    window.location.href = '#/reports'
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
@@ -186,9 +190,7 @@ const Dashboard = () => {
 
             {/* View Reports */}
             <button
-              onClick={() => toast('Reports feature will be implemented in future tasks', {
-                icon: 'ℹ️',
-              })}
+              onClick={handleNavigateToReports}
               className="flex items-center p-4 border border-gray-200 rounded-card hover:border-purple-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-25 transition-all duration-300 text-left interactive-scale group"
             >
               <div className="flex-shrink-0">

@@ -16,6 +16,7 @@ import './App.css'
 const LoginPage = lazy(() => import('./pages/LoginPage').then(module => ({ default: module.LoginPage })))
 const SignupPage = lazy(() => import('./pages/SignupPage').then(module => ({ default: module.SignupPage })))
 const TicketManagementPage = lazy(() => import('./pages/TicketManagementPage'))
+const ReportsPage = lazy(() => import('./pages/ReportsPage'))
 
 // App content component with route guard
 const AppContent = () => {
@@ -167,6 +168,18 @@ const AppContent = () => {
               <RequireAuth>
                 <Suspense fallback={<LoadingSpinner />}>
                   <TicketManagementPage />
+                </Suspense>
+              </RequireAuth>
+            </PageErrorBoundary>
+          } 
+        />
+        <Route 
+          path="/reports" 
+          element={
+            <PageErrorBoundary>
+              <RequireAuth>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <ReportsPage />
                 </Suspense>
               </RequireAuth>
             </PageErrorBoundary>
