@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Info</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .info { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages Debug Info</h1>
+    
+    <div class="info">
+        <strong>Current URL:</strong> <span id="currentUrl"></span>
+    </div>
+    
+    <div class="info">
+        <strong>Base URL:</strong> <span id="baseUrl"></span>
+    </div>
+    
+    <div class="info">
+        <strong>Path:</strong> <span id="path"></span>
+    </div>
+    
+    <div class="info">
+        <strong>Repository:</strong> tiketareact
+    </div>
+    
+    <div class="info">
+        <strong>Expected URL:</strong> https://elpresidentey.github.io/tiketareact/
+    </div>
+    
+    <h2>Test Links</h2>
+    <ul>
+        <li><a href="./index.html">Main App (./index.html)</a></li>
+        <li><a href="./test.html">Test Page (./test.html)</a></li>
+        <li><a href="./">Root Directory (./)</a></li>
+    </ul>
+    
+    <h2>Asset Test</h2>
+    <div id="assetTest">Testing asset loading...</div>
+    
+    <script>
+        document.getElementById('currentUrl').textContent = window.location.href;
+        document.getElementById('baseUrl').textContent = window.location.origin;
+        document.getElementById('path').textContent = window.location.pathname;
+        
+        // Test if we can load a CSS file
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './assets/styles/index-q99-EqNB.css';
+        link.onload = () => {
+            document.getElementById('assetTest').innerHTML = '✅ CSS asset loaded successfully';
+            document.getElementById('assetTest').style.color = 'green';
+        };
+        link.onerror = () => {
+            document.getElementById('assetTest').innerHTML = '❌ CSS asset failed to load';
+            document.getElementById('assetTest').style.color = 'red';
+        };
+        document.head.appendChild(link);
+    </script>
+</body>
+</html>
