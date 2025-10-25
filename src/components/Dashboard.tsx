@@ -1,6 +1,7 @@
 import { useAuthStore } from '../store/authStore'
 import { useTicketStats } from '../hooks/useTickets'
 import { useNavigation } from '../hooks/useNavigation'
+import { UserProfile } from './shared'
 import Footer from './Footer'
 // import { preloadOnInteraction } from '../utils/routePreloader'
 import toast from 'react-hot-toast'
@@ -31,18 +32,7 @@ const Dashboard = () => {
                 Ticket Management Dashboard
               </h1>
             </div>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-              <span className="text-sm text-gray-600">
-                Welcome, {user?.name}
-              </span>
-              <button
-                onClick={handleLogout}
-                className="btn-secondary bg-red-600 text-white hover:bg-red-700 text-sm font-medium"
-                aria-label="Sign out of your account"
-              >
-                Logout
-              </button>
-            </div>
+            {user && <UserProfile user={user} onLogout={handleLogout} />}
           </div>
         </div>
       </header>

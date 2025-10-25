@@ -6,6 +6,7 @@ import { Ticket, CreateTicketData } from '../types'
 import TicketList from '../components/TicketList'
 import TicketFormModal from '../components/TicketFormModal'
 import Footer from '../components/Footer'
+import { UserProfile } from '../components/shared'
 import { notifyOperation } from '../utils/notifications'
 import { ErrorDisplay } from '../components/ErrorDisplay'
 import { ComponentErrorBoundary } from '../components/ErrorBoundary'
@@ -130,17 +131,7 @@ const TicketManagementPage = () => {
               </div>
             </div>
             
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">
-                Welcome, {user?.name}
-              </span>
-              <button
-                onClick={handleLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 text-sm font-medium"
-              >
-                Logout
-              </button>
-            </div>
+            {user && <UserProfile user={user} onLogout={handleLogout} />}
           </div>
         </div>
       </header>
