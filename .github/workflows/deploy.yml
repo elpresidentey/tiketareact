@@ -51,7 +51,7 @@ jobs:
     - name: Run tests
       run: |
         echo "Running test suite..."
-        npm test -- --exclude="**/deployment/**"
+        npm test
         echo "All tests passed successfully"
         
     - name: Upload test results
