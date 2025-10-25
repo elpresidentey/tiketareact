@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
+import { HeroWave, DecorativeCircles } from './shared'
 
 const LandingPage = () => {
   return (
@@ -51,12 +52,8 @@ const LandingPage = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
         </div>
 
-        {/* Decorative Circles - Hidden from screen readers */}
-        <div className="decorative-circle w-32 sm:w-64 h-32 sm:h-64 bg-white/5 top-10 -right-16 sm:-right-32 z-5" aria-hidden="true"></div>
-        <div className="decorative-circle w-16 sm:w-32 h-16 sm:h-32 bg-blue-200/10 top-40 -left-8 sm:-left-16 z-5" aria-hidden="true"></div>
-        <div className="decorative-circle w-24 sm:w-48 h-24 sm:h-48 bg-indigo-200/10 bottom-20 right-10 sm:right-20 z-5" aria-hidden="true"></div>
-        <div className="decorative-circle w-20 sm:w-40 h-20 sm:h-40 bg-purple-200/8 top-1/3 left-1/4 z-5" aria-hidden="true"></div>
-        <div className="decorative-circle w-12 sm:w-24 h-12 sm:h-24 bg-cyan-200/10 bottom-1/3 left-10 sm:left-20 z-5" aria-hidden="true"></div>
+        {/* Decorative Circles */}
+        <DecorativeCircles variant="hero" />
         
         <div className="max-w-app mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -96,20 +93,7 @@ const LandingPage = () => {
         </div>
 
         {/* SVG Wave Background */}
-        <div className="wave-background" aria-hidden="true">
-          <svg 
-            viewBox="0 0 1440 320" 
-            className="w-full h-auto"
-            preserveAspectRatio="none"
-            role="presentation"
-          >
-            <path 
-              fill="#ffffff" 
-              fillOpacity="1"
-              d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            ></path>
-          </svg>
-        </div>
+        <HeroWave />
       </section>
 
       {/* Features Preview Section */}
