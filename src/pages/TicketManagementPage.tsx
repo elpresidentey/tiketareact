@@ -5,6 +5,7 @@ import { useTickets } from '../hooks/useTickets'
 import { Ticket, CreateTicketData } from '../types'
 import TicketList from '../components/TicketList'
 import TicketFormModal from '../components/TicketFormModal'
+import Footer from '../components/Footer'
 import { notifyOperation } from '../utils/notifications'
 import { ErrorDisplay } from '../components/ErrorDisplay'
 import { ComponentErrorBoundary } from '../components/ErrorBoundary'
@@ -102,10 +103,10 @@ const TicketManagementPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-app mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               {/* Back Button */}
@@ -145,7 +146,7 @@ const TicketManagementPage = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-app mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
         {/* Statistics Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           {/* Total Tickets */}
@@ -263,7 +264,8 @@ const TicketManagementPage = () => {
         mode={editingTicket ? 'edit' : 'create'}
       />
 
-
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

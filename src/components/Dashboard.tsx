@@ -1,6 +1,7 @@
 import { useAuthStore } from '../store/authStore'
 import { useTicketStats } from '../hooks/useTickets'
 import { useNavigation } from '../hooks/useNavigation'
+import Footer from './Footer'
 // import { preloadOnInteraction } from '../utils/routePreloader'
 import toast from 'react-hot-toast'
 
@@ -20,10 +21,10 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm border-b" role="banner">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-app mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center h-auto sm:h-16 py-4 sm:py-0 gap-4 sm:gap-0">
             <div className="flex items-center">
               <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
@@ -47,7 +48,7 @@ const Dashboard = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-app mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -226,6 +227,9 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

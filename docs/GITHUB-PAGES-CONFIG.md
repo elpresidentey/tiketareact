@@ -106,7 +106,7 @@ jobs:
 **Critical Settings:**
 ```typescript
 export default defineConfig({
-  base: '/tiketareact/', // Must match repository name
+  base: './', // Use relative paths for better GitHub Pages compatibility
   build: {
     sourcemap: true,
     cssCodeSplit: true,
@@ -118,10 +118,10 @@ export default defineConfig({
 ```
 
 **Base Path Rules:**
-- Must start and end with forward slash
-- Must exactly match GitHub repository name
-- Case-sensitive
-- No special characters except hyphens and underscores
+- Use relative paths (`./`) for maximum compatibility
+- Avoids issues with repository name mismatches
+- Works consistently across different GitHub Pages configurations
+- Simpler and more reliable than absolute paths
 
 ### 2. Router Configuration
 

@@ -2,7 +2,7 @@ import { User, Ticket } from '../types'
 
 // Storage keys
 export const STORAGE_KEYS = {
-  AUTH_TOKEN: 'ticket_app_auth_token',
+  AUTH_TOKEN: 'ticketapp_session',
   USER_DATA: 'ticket_app_user_data',
   TICKETS: 'ticket_app_tickets',
   THEME: 'ticket_app_theme'

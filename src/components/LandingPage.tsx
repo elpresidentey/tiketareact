@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import Footer from './Footer'
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
       {/* Navigation */}
       <nav className="relative z-10 px-4 sm:px-6 py-4" role="navigation" aria-label="Main navigation">
         <div className="max-w-app mx-auto flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
@@ -54,6 +55,8 @@ const LandingPage = () => {
         <div className="decorative-circle w-32 sm:w-64 h-32 sm:h-64 bg-white/5 top-10 -right-16 sm:-right-32 z-5" aria-hidden="true"></div>
         <div className="decorative-circle w-16 sm:w-32 h-16 sm:h-32 bg-blue-200/10 top-40 -left-8 sm:-left-16 z-5" aria-hidden="true"></div>
         <div className="decorative-circle w-24 sm:w-48 h-24 sm:h-48 bg-indigo-200/10 bottom-20 right-10 sm:right-20 z-5" aria-hidden="true"></div>
+        <div className="decorative-circle w-20 sm:w-40 h-20 sm:h-40 bg-purple-200/8 top-1/3 left-1/4 z-5" aria-hidden="true"></div>
+        <div className="decorative-circle w-12 sm:w-24 h-12 sm:h-24 bg-cyan-200/10 bottom-1/3 left-10 sm:left-20 z-5" aria-hidden="true"></div>
         
         <div className="max-w-app mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -102,7 +105,7 @@ const LandingPage = () => {
           >
             <path 
               fill="#ffffff" 
-              fillOpacity="0.9"
+              fillOpacity="1"
               d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,106.7C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
             ></path>
           </svg>
@@ -122,44 +125,47 @@ const LandingPage = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <article className="text-center p-4 sm:p-6 card-interactive rounded-lg hover:shadow-lg transition-shadow duration-200" tabIndex={0}>
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+            <article className="bg-white text-center p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" tabIndex={0}>
+              <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md" aria-hidden="true">
                 <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Easy Tracking</h3>
-              <p className="text-gray-600 text-sm sm:text-base">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Easy Tracking</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 Keep track of all your tickets with intuitive status management and real-time updates.
               </p>
             </article>
             
-            <article className="text-center p-4 sm:p-6 card-interactive rounded-lg hover:shadow-lg transition-shadow duration-200" tabIndex={0}>
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+            <article className="bg-white text-center p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" tabIndex={0}>
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md" aria-hidden="true">
                 <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Lightning Fast</h3>
-              <p className="text-gray-600 text-sm sm:text-base">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Lightning Fast</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 Built for speed with instant search, filtering, and responsive design for any device.
               </p>
             </article>
             
-            <article className="text-center p-4 sm:p-6 card-interactive rounded-lg hover:shadow-lg transition-shadow duration-200" tabIndex={0}>
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+            <article className="bg-white text-center p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" tabIndex={0}>
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md" aria-hidden="true">
                 <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Smart Analytics</h3>
-              <p className="text-gray-600 text-sm sm:text-base">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Smart Analytics</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                 Get insights into your ticket patterns with built-in analytics and reporting features.
               </p>
             </article>
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

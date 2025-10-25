@@ -5,6 +5,11 @@
   min-height: 100vh;
 }
 
+/* Ensure all main content respects max-width */
+.max-w-app {
+  max-width: 1440px;
+}
+
 .hero-section {
   position: relative;
   overflow: hidden;

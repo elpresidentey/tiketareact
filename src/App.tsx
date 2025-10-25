@@ -42,7 +42,7 @@ const AppContent = () => {
   }, [])
 
   return (
-    <div className="app-container min-h-screen">
+    <div className="min-h-screen flex flex-col">
       {/* Skip to main content link for screen readers */}
       <a 
         href="#main-content" 
@@ -102,7 +102,7 @@ const AppContent = () => {
           },
         }}
       />
-      <main id="main-content" role="main">
+      <main id="main-content" role="main" className="flex-1">
         <Routes>
         {/* Public routes */}
         <Route path="/" element={
@@ -114,6 +114,18 @@ const AppContent = () => {
         {/* Auth routes - redirect to dashboard if already authenticated */}
         <Route 
           path="/login" 
+          element={
+            <PageErrorBoundary>
+              <RequireGuest>
+                <Suspense fallback={<LoadingSpinner />}>
+                  <LoginPage />
+                </Suspense>
+              </RequireGuest>
+            </PageErrorBoundary>
+          } 
+        />
+        <Route 
+          path="/auth/login" 
           element={
             <PageErrorBoundary>
               <RequireGuest>

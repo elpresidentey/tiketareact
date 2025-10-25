@@ -32,3 +32,6 @@ export { NetworkStatus, NetworkStatusIndicator } from './NetworkStatus'
 
 // Demo components (Development only)
 export { ErrorHandlingDemo } from './ErrorHandlingDemo'
+
+// Layout components
+export { default as Footer } from './Footer'

@@ -25,8 +25,8 @@ describe('Comprehensive Functionality Testing', () => {
     it('should render the landing page correctly', () => {
       render(<App />)
       
-      // Verify landing page elements
-      expect(screen.getByText('TicketFlow')).toBeTruthy()
+      // Verify landing page elements (multiple instances expected - nav and footer)
+      expect(screen.getAllByText('TicketFlow').length).toBeGreaterThanOrEqual(1)
       expect(screen.queryAllByText(/ticket management/i).length).toBeGreaterThan(0)
       
       // Verify navigation links are present

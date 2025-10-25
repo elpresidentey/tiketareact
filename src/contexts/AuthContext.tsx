@@ -53,7 +53,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const handleStorageChange = (event: StorageEvent) => {
       // If auth token was removed in another tab, logout here too
-      if (event.key === 'ticket_app_auth_token' && event.newValue === null) {
+      if (event.key === 'ticketapp_session' && event.newValue === null) {
         logout()
       }
     }
