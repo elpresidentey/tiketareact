@@ -126,16 +126,7 @@ export default defineConfig({
       overlay: false,
     },
   },
-  // GitHub Pages specific optimizations
-  experimental: {
-    renderBuiltUrl(filename, { hostType }) {
-      if (hostType === 'js') {
-        return { js: `./assets/${filename}` }
-      } else {
-        return { relative: true }
-      }
-    }
-  },
+
   // Enable CSS preprocessing optimizations
   css: {
     devSourcemap: false,

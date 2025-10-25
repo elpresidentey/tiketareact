@@ -29,7 +29,7 @@ jobs:
         cache: 'npm'
         
     - name: Cache node modules
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ env.CACHE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
@@ -56,7 +56,7 @@ jobs:
         
     - name: Upload test results
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: |
@@ -93,7 +93,7 @@ jobs:
         cache: 'npm'
         
     - name: Cache node modules
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ env.CACHE_VERSION }}-${{ hashFiles('**/package-lock.json') }}
@@ -136,7 +136,7 @@ jobs:
         echo "✅ Build artifacts verified successfully"
         
     - name: Setup GitHub Pages
-      uses: actions/configure-pages@v4
+      uses: actions/configure-pages@v5
       
     - name: Upload build artifacts
       uses: actions/upload-pages-artifact@v3
@@ -192,7 +192,7 @@ jobs:
         
     - name: Create deployment status issue
       if: failure()
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           const title = `🚨 Deployment Failed - ${new Date().toISOString().split('T')[0]}`;
@@ -233,7 +233,7 @@ jobs:
           
     - name: Notify deployment success
       if: success()
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           // Create a success comment on the latest commit
@@ -279,14 +279,14 @@ jobs:
         echo "PR preview build completed"
         
     - name: Upload PR preview artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: pr-preview-${{ github.event.number }}
         path: dist/
         retention-days: 7
         
     - name: Comment PR
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           github.rest.issues.createComment({
